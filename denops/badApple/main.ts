@@ -27,7 +27,7 @@ export async function main(denops: Denops): Promise<void> {
       const decoder = new TextDecoder();
       const rawContent = Deno.readAllSync(file);
       const t = decoder.decode(rawContent);
-      let e = t.split(/^\n$/gm);
+      const e = t.split(/^\n$/gm);
       const o = Date.now();
       let l = 0;
       const c = async (t) => {
@@ -35,8 +35,8 @@ export async function main(denops: Denops): Promise<void> {
         let a = t.split(/\d$/gm);
         let p = ++l * (1 / 30) * 1000;
         let d = Date.now() - o;
-        log(denops, a[2]),
-          await (s = Date.now()),
+        await log(denops, a[2]),
+          (s = Date.now()),
           setTimeout(async () => {
             // console.clear();
             e.length > 0 ? c(e.shift()) : console.log("ENDED");
