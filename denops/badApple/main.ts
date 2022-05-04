@@ -1,0 +1,53 @@
+import * as path from "https://deno.land/std@0.57.0/path/mod.ts";
+import { Denops } from "https://deno.land/x/denops_std@v3.3.1/mod.ts";
+
+const log = async (denops, content) => {
+  try {
+    const newContent = content.split(/\n/);
+    newContent.forEach(async (c, i) => {
+      if (typeof c === "string") {
+        await denops.call(
+          "setline",
+          i,
+          c,
+        );
+      }
+    });
+  } catch (e) {
+    console.error(e);
+    return;
+  }
+};
+
+export async function main(denops: Denops): Promise<void> {
+  denops.dispatcher = {
+    async badApple(): Promise<void> {
+      const parent_dir = path.dirname(path.fromFileUrl(import.meta.url));
+      const file = await Deno.open(parent_dir + "/frames.txt", { read: true });
+      const decoder = new TextDecoder();
+      const rawContent = Deno.readAllSync(file);
+      const t = decoder.decode(rawContent);
+      let e = t.split(/^\n$/gm);
+      const o = Date.now();
+      let l = 0;
+      const c = async (t) => {
+        let s = null;
+        let a = t.split(/\d$/gm);
+        let p = ++l * (1 / 30) * 1000;
+        let d = Date.now() - o;
+        log(denops, a[2]),
+          await (s = Date.now()),
+          setTimeout(async () => {
+            // console.clear();
+            e.length > 0 ? c(e.shift()) : console.log("ENDED");
+          }, p - d);
+      };
+      await denops.cmd("enew");
+      await c(e.shift());
+    },
+  };
+
+  await denops.cmd(
+    `command! BadApple call denops#request('${denops.name}', 'badApple', [])`,
+  );
+}
