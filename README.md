@@ -1,5 +1,5 @@
 # bad-apple.vim
-Plag [Bad Apple!!](https://www.youtube.com/watch?v=UkgK8eUdpAo) on your vim/neovim!
+Let's watch [Bad Apple!!](https://www.youtube.com/watch?v=UkgK8eUdpAo) on your vim/neovim!
 
 https://user-images.githubusercontent.com/1560508/166665769-51f0f1da-31d4-4df4-85da-95d9a068786f.mov
 
