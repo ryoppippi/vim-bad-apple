@@ -38,6 +38,7 @@ export async function main(denops: Denops): Promise<void> {
           }, p - d);
       };
       await denops.cmd("enew");
+      await denops.cmd("setlocal nowrap");
       await c(e.shift());
     },
   };
