@@ -3,16 +3,11 @@ import { Denops } from "https://deno.land/x/denops_std@v3.3.1/mod.ts";
 
 const log = async (denops, content) => {
   try {
-    const newContent = content.split(/\n/);
-    newContent.forEach(async (c, i) => {
-      if (typeof c === "string") {
-        await denops.call(
-          "setline",
-          i,
-          c,
-        );
-      }
-    });
+    const newContent = content.split(/\n/).filter((x, i) =>
+      typeof x === "string" && i > 0
+    )
+      .map((x) => x.slice(0, -1));
+    await denops.call("setline", 1, newContent);
   } catch (e) {
     console.error(e);
     return;
