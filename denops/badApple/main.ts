@@ -1,5 +1,5 @@
-import * as path from "https://deno.land/std@0.57.0/path/mod.ts";
-import { Denops } from "https://deno.land/x/denops_std@v3.3.1/mod.ts";
+import * as path from "https://deno.land/std@0.215.0/path/mod.ts";
+import { Denops } from "https://deno.land/x/denops_std@v6.0.1/mod.ts";
 
 const log = async (denops, content) => {
   try {
